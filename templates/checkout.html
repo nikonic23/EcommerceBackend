@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+</head>
+<body>
+
+<h2>Checkout</h2>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div style="color: red; margin-bottom: 15px;">
+      {% for msg in messages %}
+        <p>{{ msg }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<p>Total Amount: Rs.{{ total }}</p>
+
+<form method="post" action="{{ url_for('orders.mock_payment') }}">
+    <button type="submit" name="result" value="success">
+        Pay Now (Mock Success)
+    </button>
+
+    <button type="submit" name="result" value="fail">
+        Simulate Payment Failure
+    </button>
+</form>
+
+<br>
+<a href="{{ url_for('cart.cart_page') }}">&lAarr; Back to Cart</a>
+
+</body>
+</html>

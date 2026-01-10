@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Details</title>
+</head>
+<body>
+
+<h2>Orders #{{ order.id }}</h2>
+
+<p>
+    Status: <strong>{{ order.status }}</strong><br>
+    Date: {{ order.created_at }}<br>
+    Total Amount: Rs.{{ order.total_amount }}
+</p>
+
+<hr>
+
+{% if items %}
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+
+    {% for item in items %}
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>Rs.{{ item.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>Rs.{{ item.total }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No Items Found for this Order.</p>
+{% endif %}
+
+<br>
+<a href="{{ url_for('orders.orders_page') }}">&lAarr; Back to Orders</a>
+
+</body>
+</html>

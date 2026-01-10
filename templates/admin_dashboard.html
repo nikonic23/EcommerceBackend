@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+<h2>Welcome Admin</h2>
+
+<a href="{{ url_for('products.admin_add_product') }}">Add Product</a><br><br>
+<a href="{{ url_for('orders.admin_orders') }}">View Orders</a><br><br>
+<a href="{{ url_for('main.dashboard') }}">Back to Dashboard</a><br><br>
+
+<form action="{{url_for('auth.logout')}}" method = "POST">
+    <button type ="submit">Logout</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products</title>
+    <meta charset="UTH-8">
+</head>
+<body>
+
+<h2>Products</h2>
+
+<a href="{{ url_for('main.dashboard') }}">&lAarr; Back to Dashboard </a>
+<br><br>
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div style="color: green;">
+      {% for msg in messages %}
+        <p>{{ msg }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+<br>
+
+{% if products %}
+    <ul>
+        {% for product in products %}
+        <li>
+            <strong>{{ product.name }}</strong><br>
+            Price: Rs.{{ product.price }} <br>
+            Stock: {{ product.stock }} <br>
+
+            <form action="{{ url_for('cart.add_to_cart')}}" method="post">
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <input type="number" name="quantity" value="1" min="1" required>
+                <button type="submit">Add to Cart</button>
+            </form>
+
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No products available.</p>
+{% endif %}
+
+
+</body>
+</html>

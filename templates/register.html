@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+<div class = "container">
+    <h2>Register Form</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class = "alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form action="{{url_for('auth.register')}}" method="post">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.name.label(for="name")}}
+            {{ form.name(id = "name", class= "form-control")}}
+
+            {% if form.name.errors %}
+                <small>
+                    {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.email.label(for="email")}}
+            {{ form.email(id = "email", class= "form-control")}}
+
+            {% if form.email.errors %}
+                <small>
+                    {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </small>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.password.label(for="password")}}
+            {{ form.password(type = "password", class= "form-control")}}
+
+            {% if form.password.errors %}
+                <small>
+                    {% for error in form.password.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </small>
+            {% endif %}
+        </div>
+        {{ form.submit(class = "btn btn-dark mt-4")}}
+  </form>
+
+</body>
+</html>

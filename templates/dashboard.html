@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Flask MySQL</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<div class = "container">
+    <h2>Welcome to Dashboard</h2>
+
+    {% if role == 'admin' %}
+        <a href="/admin/dashboard">Admin Panel</a>
+    {% endif %}
+    {% if user %}
+        <p>USER INFORMATION</p>
+        <ul>
+            <li>Name : {{ user.name }}</li>
+            <li>Email : {{ user.email }}</li>
+        </ul>
+
+        <br>
+        <a href="{{ url_for('products.products_page') }}">View Products</a>
+        
+        <br><br>
+        <a href="{{ url_for('cart.cart_page') }}">View Cart</a>
+
+        <br><br>
+        <a href="{{ url_for('orders.orders_page') }}">My Orders</a>
+        <br><br>
+
+        <form action="{{url_for('auth.logout')}}" method = "POST">
+            <button type ="submit">Logout</button>
+        </form>
+    {% endif %}
+    
+</div>
+</body>
+</html>

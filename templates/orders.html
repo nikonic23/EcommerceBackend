@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Orders</title>
+</head>
+<body>
+
+<h2>Your Orders</h2>
+
+<a href="{{ url_for('main.dashboard') }}">&lAarr; Back</a>
+<br><br>
+
+{% if orders %}
+<ul>
+    {% for order in orders%}
+        <li>
+            <a href="{{ url_for('orders.order_details', order_id = order.id)}}">
+                Order #{{ order_id }}
+            </a> |
+            Total: Rs.{{ order.total_amount }} |
+            Status: {{ order.status }} |
+            Date: {{ order.created_at }} |
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No orders yet.</p>
+{% endif %}
+
+</body>
+</html>

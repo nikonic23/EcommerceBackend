@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Orders</title>
+</head>
+<body>
+
+<h2>All Orders</h2>
+
+<a href="{{ url_for('admin.admin_dashboard') }}">&lAarr; Back to Admin Dashboard</a>
+<br><br>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div style="color: green;">
+      {% for msg in messages %}
+        <p>{{ msg }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+<br>
+
+{% if orders %}
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Order ID</th>
+        <th>User</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Date</th>
+    </tr>
+
+    {% for order in orders%}
+    <tr>
+        <td>#{{ order.id }}</td>
+        <td>{{ order.email }}</td>
+        <td>Rs.{{ order.total_amount }}</td>
+        <td>
+            <form method="post" action="{{ url_for('orders.update_order_status', order_id=order.id) }}">
+                <select name="status">
+                    <option value="PLACED"
+                        {% if order.status=='PLACED' %}selected{% endif %}>
+                        PLACED
+                    </option>
+                    <option value="CANCELLED"
+                        {% if order.status == 'CANCELLED' %}selected{% endif %}>
+                        CANCELLED
+                    </option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+        </td>
+        <td>{{ order.created_at }}</td>
+    </tr>
+    {% endfor%}
+</table>
+{% else %}
+<p>No orders found.</p>
+{% endif %}
+
+</body>
+</html>
