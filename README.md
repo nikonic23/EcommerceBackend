@@ -120,4 +120,8 @@ Flask Application Factory pattern
 • ORM: Raw SQL (intentional, explicit control)
 • Testing: Pytest
 • Security: bcrypt, JWT
+<<<<<<< Updated upstream
 • Logging: Python logging
+=======
+• Logging: Python logging
+>>>>>>> Stashed changes
