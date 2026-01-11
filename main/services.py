@@ -8,6 +8,6 @@ def get_identity():
     user_id = int(get_jwt_identity())
     role = claims["role"]
 
-    user = UserRepository.get_by_email(user_id)
+    user = UserRepository.get_by_id(user_id)
 
     return user, role
