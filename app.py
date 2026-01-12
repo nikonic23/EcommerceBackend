@@ -54,6 +54,13 @@ def apply_security_headers(response):
     return set_secuirty_headers(response)
 
 
+from werkzeug.exceptions import NotFound
+
+@app.errorhandler(NotFound)
+def handle_404(e):
+    return {"msg": "Not found"}, 404
+
+
 @app.errorhandler(Exception)
 def handle_exception(e):
     logger.exception("Unhandled exception")
