@@ -5,3 +5,4 @@ Flask-MySQLdb
 bcrypt
 python-dotenv
 gunicorn
+email-validator
