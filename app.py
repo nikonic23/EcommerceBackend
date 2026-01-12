@@ -11,6 +11,10 @@ from orders import orders_bp
 from utils.security import set_secuirty_headers
 from utils.request_id import generate_request_id
 from utils.logger import setup_logger
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 
 def create_app():

@@ -1,8 +1,6 @@
 from flask import render_template, redirect, url_for, session, flash, request
 from . import auth_bp
-from flask_jwt_extended import get_jwt
 from auth.forms import RegisterForm, LoginForm
-from utils.token_blocklist import BLOCKLIST
 from utils.rate_limiter import is_rate_limited
 from auth.services import (
     register_user,
@@ -70,10 +68,8 @@ def api_login():
 
 @auth_bp.route('/logout', methods=['POST'])
 def logout():
-    jti = get_jwt()["jti"]
-    BLOCKLIST.add(jti)
 
-    session.pop('access_token',None)
+    session.pop('access_token', None)
     flash("You have been logged out successfully. ")
 
     return redirect(url_for('auth.login'))
