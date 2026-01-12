@@ -1,1 +1,7 @@
+Flask
+Flask-JWT-Extended
+Flask-WTF
+Flask-MySQLdb
+bcrypt
+python-dotenv
 gunicorn

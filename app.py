@@ -11,10 +11,7 @@ from orders import orders_bp
 from utils.security import set_secuirty_headers
 from utils.request_id import generate_request_id
 from utils.logger import setup_logger
-from dotenv import load_dotenv
-
-
-load_dotenv()
+from flask_jwt_extended import JWTManager
 
 
 def create_app():
@@ -29,12 +26,15 @@ def create_app():
 app = create_app()
 
 
+jwt = JWTManager(app)
+
 app.register_blueprint(auth_bp)
 app.register_blueprint(main_bp)
 app.register_blueprint(admin_bp)
 app.register_blueprint(products_bp)
 app.register_blueprint(cart_bp)
 app.register_blueprint(orders_bp)
+
 
 
 @app.before_request
