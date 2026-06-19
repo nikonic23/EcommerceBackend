@@ -1,127 +1,140 @@
-🛒 E-COMMERCE BACKEND (Flask + MySQL)
+# 🛒 E-Commerce Backend System
 
-A production-style e-commerce backend built using Flask, MySQL, and JWT-based authentication.
-Designed with clean architecture, modular blueprints, service-layer separation, and full test coverage.
+A production-style e-commerce backend built using Flask, MySQL, and JWT-based authentication. The project follows clean architecture principles with modular blueprints, service-layer separation, role-based authorization, and automated testing.
 
+---
 
+## Features
 
-✨ Features
-🔐 Authentication & Authorization
+### 🔐 Authentication & Authorization
 
-• JWT-based authentication (access tokens)
-• Role-based access control (Admin / User)
-• Secure password hashing using bcrypt
-• Token injection via session for browser-based flows
+* JWT-based authentication using Flask-JWT-Extended
+* Role-based access control (Admin / User)
+* Secure password hashing with bcrypt
+* Protected routes using custom decorators
+* Token-based session handling
 
+### 🛍️ Product Management
 
+* Admin-only product creation, updates, and soft deletion
+* Public product catalog APIs
+* Inventory validation before order placement
+* Service-layer abstraction for business logic
 
-🛍️ Product Management
+### 🛒 Cart System
 
-• Admin-only product creation, update, soft delete
-• Public product listing
-• Stock validation at order time
-• Service-layer SQL separation (services.py)
+* Persistent user-specific shopping carts
+* Quantity aggregation for existing items
+* Stock validation before cart updates
+* Automatic cart cleanup after successful checkout
 
+### 📦 Orders & Checkout
 
+* Atomic order placement workflow
+* Order and OrderItem relationship modeling
+* Order status management for administrators
+* Mock payment processing flow
+* Stock restoration on order cancellation
 
-🛒 Cart System
+---
 
-• Persistent carts per user
-• Quantity aggregation
-• Stock checks before adding
-• Automatic cart cleanup after order placement
+## Architecture
 
+### Design Principles
 
+* Flask Application Factory Pattern
+* Modular Blueprint Architecture
+* Service Layer Separation
+* Role-Based Access Control
+* Centralized Utility Layer
+* Test-Driven Development
 
-📦 Orders & Checkout
+### Modules
 
-• Atomic order placement
-• Order-item relationship modeling
-• Admin order management (status updates)
-• Mock payment flow
-• Stock rollback on cancellation
+* Auth
+* Products
+* Cart
+* Orders
+* Admin
+* Utilities
 
+---
 
+## Tech Stack
 
-🧱 Architecture
+| Category        | Technology         |
+| --------------- | ------------------ |
+| Backend         | Flask              |
+| Database        | MySQL              |
+| Authentication  | Flask-JWT-Extended |
+| Security        | bcrypt, JWT        |
+| Testing         | Pytest             |
+| Data Access     | Raw SQL            |
+| Version Control | Git, GitHub        |
 
-Flask Application Factory pattern
-• Modular Blueprints:
-    • auth
-    • main
-    • products
-    • cart
-    • orders
-    • admin
-• Service layer for database logic
-• Utility layers for helpers & decorators
+---
 
+## Testing
 
+The project includes a Pytest-based test suite covering:
 
-🧪 Testing
+* Authentication workflows
+* Product management
+* Cart functionality
+* Order processing
+* Authorization rules
 
-• Pytest-based test suite
-• Isolated test database
-• Auth, cart, orders, products fully tested
-• Fixtures via conftest.py
+Features include:
 
+* Isolated test database
+* Reusable fixtures via `conftest.py`
+* Automated validation of business logic
 
+---
 
-📊 Observability
+## Project Structure
 
-• Structured logging
-• Request ID propagation
-• Log-level testing
-
-
-
-🗂️ Project Structure
-
+```text
 .
 ├── app.py
 ├── config.py
 ├── extensions.py
 ├── auth/
-│   ├── routes.py
-│   ├── forms.py
-│   └── __init__.py
 ├── products/
-│   ├── routes.py
-│   ├── services.py
-│   └── __init__.py
 ├── cart/
-│   ├── routes.py
-│   └── __init__.py
 ├── orders/
-│   ├── routes.py
-│   └── __init__.py
 ├── admin/
-│   ├── routes.py
-│   └── __init__.py
 ├── utils/
-│   ├── helpers.py
-│   ├── decorators.py
-│   └── logging.py
 ├── tests/
-│   ├── conftest.py
-│   ├── test_auth.py
-│   ├── test_cart.py
-│   ├── test_orders.py
-│   └── test_products.py
-└── readme.txt
+└── README.md
+```
 
+---
 
+## Technical Highlights
 
-🛠️ Tech Stack
+* Implemented JWT-based authentication and authorization workflows
+* Built role-based access control for secure admin operations
+* Designed atomic checkout processes with inventory validation
+* Structured application using modular blueprints and service layers
+* Developed comprehensive automated tests using Pytest
+* Implemented structured logging and request tracking mechanisms
 
-• Backend: Flask
-• Database: MySQL
-• Auth: Flask-JWT-Extended
-• ORM: Raw SQL (intentional, explicit control)
-• Testing: Pytest
-• Security: bcrypt, JWT
-<<<<<<< Updated upstream
-• Logging: Python logging
-=======
-• Logging: Python logging
->>>>>>> Stashed changes
+---
+
+## Future Improvements
+
+* Payment Gateway Integration
+* API Documentation (Swagger/OpenAPI)
+* Docker Support
+* Redis-Based Caching
+* Background Job Processing
+* CI/CD Pipeline
+
+---
+
+## Author
+
+Nikhil Munda
+
+GitHub: https://github.com/nikonic23
